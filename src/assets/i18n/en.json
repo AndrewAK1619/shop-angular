@@ -1,3 +1,16 @@
 {
-    
+    "common": {
+        "auth": {
+            "login": "Login",
+            "signIn": "Sign In",
+            "password": "Password",
+            "confirmPassword": "Confirm password",
+            "registration": "Registration"
+        },
+        "user": {
+            "firstName": "First name",
+            "lastName": "Last name",
+            "mobilePhone": "Mobile Phone"
+        }
+    }
 }

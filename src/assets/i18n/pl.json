@@ -1,3 +1,16 @@
 {
-    
+    "common": {
+        "auth": {
+            "login": "Logowanie",
+            "signIn": "Zaloguj się",
+            "password": "Hasło",
+            "confirmPassword": "Potwierdź hasło",
+            "registration": "Rejestracja"
+        },
+        "user": {
+            "firstName": "Imię",
+            "lastName": "Nazwisko",
+            "mobilePhone": "Telefon komórkowy"
+        }
+    }
 }
