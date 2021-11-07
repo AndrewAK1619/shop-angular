@@ -1,3 +1,5 @@
+import { UserState } from './state/user.state';
+import { NgxsModule } from '@ngxs/store';
 import { MatButtonModule } from '@angular/material/button';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { FormlyModule } from '@ngx-formly/core';
@@ -51,6 +53,7 @@ const routes: Routes = [
     MatButtonModule, // kontrolki do buttonów
     FormlyMatDatepickerModule,  // w formly datepicker
     MatNativeDateModule, // w formly datepicker
+    NgxsModule.forFeature([UserState]),
   ]
 })
 export class AuthModule { }
