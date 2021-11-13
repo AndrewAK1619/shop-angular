@@ -1,4 +1,8 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
-    <formly-form [fields]="formFields" [form]="formGroup"></formly-form>
-    <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Register</button>
-</form>
+<mat-card class="custom">
+    <mat-card class="custom inside-card register-card">
+        <form [formGroup]="formGroup" (ngSubmit)="submit()">
+            <formly-form [fields]="formFields" [form]="formGroup"></formly-form>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Register</button>
+        </form>
+    </mat-card>
+</mat-card>

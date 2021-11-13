@@ -9,108 +9,135 @@ import { Store } from '@ngxs/store';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
   // ---  1.0 - Poniżej przykład co trzeba dodać aby móc dodać style ---
-  // encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None
 })
 export class RegisterComponent implements OnInit {
 
   formGroup = new FormGroup({})
   formFields: FormlyFieldConfig[] = [
     {
-      key: "firstName",
-      type: "input",
-      // ---  1.0 - Poniżej przykład co trzeba dodać aby móc dodać style ---
-      // className: 
-      templateOptions: {
-        label: "First Name",
-        placeholder: "Enter first name",
-        required: true,
-        maxLength: 255
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required",
-          maxLength: (error, field) => "Lenght should be less then 255"
-        }
-      }
+      className: 'section-label',
+      template: '<div><strong>REGISTRATION:</strong></div><hr /><br />',
     },
     {
-      key: "lastName",
-      type: "input",
-      templateOptions: {
-        label: "Last Name",
-        placeholder: "Enter last name",
-        required: true,
-        maxLength: 255
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required",
-          maxLength: (error, field) => "Lenght should be less then 255"
-        }
-      }
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          className: 'col-6',
+          key: "firstName",
+          type: "input",
+          templateOptions: {
+            label: "First Name",
+            placeholder: "Enter first name",
+            required: true,
+            maxLength: 255
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required",
+              maxLength: (error, field) => "Lenght should be less then 255"
+            }
+          }
+        },
+        {
+          className: 'col-6',
+          key: "lastName",
+          type: "input",
+          templateOptions: {
+            label: "Last Name",
+            placeholder: "Enter last name",
+            required: true,
+            maxLength: 255
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required",
+              maxLength: (error, field) => "Lenght should be less then 255"
+            }
+          }
+        },
+      ],
     },
+    { template: '<br />' },
     {
-      key: "birthDate",
-      type: "datepicker",
-      templateOptions: {
-        label: "Birth Date",
-        placeholder: "Enter birth date",
-        required: true
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required"
-        }
-      }
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          className: 'col-6',
+          key: "email",
+          type: "input",
+          templateOptions: {
+            label: "Email",
+            placeholder: "Enter email",
+            required: true,
+            type: "email"
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required",
+              maxLength: (error, field) => "Lenght should be less then 255"
+            }
+          }
+        },
+        {
+          className: 'col-6',
+          key: "birthDate",
+          type: "datepicker",
+          templateOptions: {
+            label: "Birth Date",
+            placeholder: "Enter birth date",
+            required: true
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required"
+            }
+          }
+        },
+      ],
     },
+    { template: '<br />' },
     {
-      key: "email",
-      type: "input",
-      templateOptions: {
-        label: "Email",
-        placeholder: "Enter email",
-        required: true,
-        type: "email"
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required",
-          maxLength: (error, field) => "Lenght should be less then 255"
-        }
-      }
+      fieldGroupClassName: 'row',
+      fieldGroup: [
+        {
+          className: 'col-6',
+          key: "password",
+          type: "input",
+          templateOptions: {
+            label: "Password",
+            placeholder: "Enter password",
+            required: true,
+            type: "password"
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required",
+              maxLength: (error, field) => "Lenght should be less then 255"
+            }
+          }
+        },
+        {
+          className: 'col-6',
+          key: "confirmPassword",
+          type: "input",
+          templateOptions: {
+            label: "Confirm Password",
+            placeholder: "Enter confirm password",
+            required: true,
+            type: "password"
+          },
+          validation: {
+            messages: {
+              required: (error, field) => "Value is required",
+              maxLength: (error, field) => "Lenght should be less then 255"
+            }
+          }
+        },
+      ],
     },
-    {
-      key: "password",
-      type: "input",
-      templateOptions: {
-        label: "Password",
-        placeholder: "Enter password",
-        required: true,
-        type: "password"
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required",
-          maxLength: (error, field) => "Lenght should be less then 255"
-        }
-      }
-    },
-    {
-      key: "confirmPassword",
-      type: "input",
-      templateOptions: {
-        label: "Confirm Password",
-        placeholder: "Enter confirm password",
-        required: true,
-        type: "password"
-      },
-      validation: {
-        messages: {
-          required: (error, field) => "Value is required",
-          maxLength: (error, field) => "Lenght should be less then 255"
-        }
-      }
-    },
+    { template: '<br />' },
+    { template: '<br />' },
   ];
 
   constructor(public readonly store: Store) { }

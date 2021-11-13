@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+import { MatCardModule } from '@angular/material/card';
+
 const routes: Routes = [
   {
     path: '',
@@ -51,6 +53,7 @@ const routes: Routes = [
     FormlyMaterialModule, // korzystając z formly będziemy dociągać kontrolki materialowe
     MatInputModule, // kontrolki do imputów
     MatButtonModule, // kontrolki do buttonów
+    MatCardModule,
     FormlyMatDatepickerModule,  // w formly datepicker
     MatNativeDateModule, // w formly datepicker
     NgxsModule.forFeature([UserState]),
