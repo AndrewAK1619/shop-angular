@@ -4,7 +4,7 @@ import { Navigate } from '@ngxs/router-plugin';
 import { State, Action, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserControllerService } from 'src/app/api/services';
-import { RegisterUserAction, LoginUserAction } from './user.actions';
+import { RegisterUserAction, LoginUserAction, LogoutAction } from './user.actions';
 
 export class UserStateModel {
   public token: string;
@@ -39,5 +39,11 @@ export class UserState {
         patchState({ token: response.token })
       })
     )
+  }
+
+  @Action(LogoutAction)
+  logoutUser({ dispatch, patchState }: StateContext<UserStateModel>) {
+    patchState({ token: '' })
+    dispatch(new Navigate(['/auth/login']))
   }
 }

@@ -9,3 +9,8 @@ export class LoginUserAction {
   static readonly type = '[User] LoginUserActiion';
   constructor(public email: string, public password: string) { }
 }
+
+export class LogoutAction {
+  static readonly type = '[User] LogoutUserAction';
+  constructor() { }
+}
