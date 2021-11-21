@@ -22,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
+import { ApiModule } from './api/api.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,10 @@ import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
     }),
     NgxsModule.forRoot(),
     HttpClientModule,
-    NgxsRouterPluginModule.forRoot()
+    NgxsRouterPluginModule.forRoot(),
+    ApiModule.forRoot({
+      rootUrl: environment.url
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

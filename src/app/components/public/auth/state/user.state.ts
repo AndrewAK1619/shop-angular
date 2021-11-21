@@ -4,10 +4,11 @@ import { Navigate } from '@ngxs/router-plugin';
 import { State, Action, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserControllerService } from 'src/app/api/services';
-import { RegisterUserAction, LoginUserAction, LogoutAction } from './user.actions';
+import { environment } from 'src/environments/environment';
+import { RegisterUserAction, LoginUserAction, LogoutAction, LoginFromLocaleStorageAction } from './user.actions';
 
 export class UserStateModel {
-  public token: string;
+  public token: string; // pathState aktualizuje zmienną token
 }
 
 const defaults = {
@@ -15,7 +16,7 @@ const defaults = {
 };
 
 @State<UserStateModel>({
-  name: 'user',
+  name: 'user', // nazwa state - UserState
   defaults
 })
 @Injectable()
@@ -34,9 +35,10 @@ export class UserState {
 
   @Action(LoginUserAction)
   loginUser({ dispatch, patchState }: StateContext<UserStateModel>, { email, password }: LoginUserAction) {
-    return this.httpClient.post<{ token: string }>('http://localhost:8080/api/login', { email, password }).pipe(
+    return this.httpClient.post<{ token: string }>(`${environment.url}/api/login`, { email, password }).pipe(
       tap(response => {
-        patchState({ token: response.token })
+        patchState({ token: response.token });
+        localStorage.setItem('token', response.token)
       })
     )
   }
@@ -44,6 +46,15 @@ export class UserState {
   @Action(LogoutAction)
   logoutUser({ dispatch, patchState }: StateContext<UserStateModel>) {
     patchState({ token: '' })
-    dispatch(new Navigate(['/auth/login']))
+    dispatch(new Navigate(['/auth/login']));
+    localStorage.removeItem('token')
+  }
+
+  @Action(LoginFromLocaleStorageAction)
+  loginFromLocaleStorage({ patchState }: StateContext<UserStateModel>) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      patchState({ token }) // jeżeli nazwa zmiennej pokrywa się z nazwą przekazywnej zmiennej to nie potrzeba przypisywać
+    }
   }
 }
