@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Store } from '@ngxs/store';
@@ -7,9 +7,7 @@ import { LoginUserAction } from '../state/user.actions';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  // ---  1.0 - Poniżej przykład co trzeba dodać aby móc dodać style ---
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

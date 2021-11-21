@@ -1,5 +1,5 @@
 import { RegisterUserAction } from './../state/user.actions';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { Store } from '@ngxs/store';
@@ -7,9 +7,7 @@ import { Store } from '@ngxs/store';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  // ---  1.0 - Poniżej przykład co trzeba dodać aby móc dodać style ---
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
