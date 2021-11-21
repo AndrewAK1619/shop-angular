@@ -12,20 +12,26 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>shop</span>
-      <div *ngIf="token$ | async">
-        <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+      <div class="container">
+        <div class="row">
+          <div class="col-10">
+            <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>shop</span>
+          </div>
+          <div class="col-2" *ngIf="token$ | async">
+            <button mat-raised-button color="primary" (click)="logout()" class="btn pull-right">Logout</button>
+          </div>
+        </div>
       </div>
     </mat-toolbar>
 
-    <div>
+    <div class="m-2">
       <router-outlet></router-outlet>
     </div>
 

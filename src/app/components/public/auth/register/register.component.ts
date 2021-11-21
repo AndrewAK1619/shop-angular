@@ -146,4 +146,4 @@ export class RegisterComponent implements OnInit {
   submit() {
     this.store.dispatch(new RegisterUserAction(this.formGroup.value))
   }
-}
+} // dispatch - uruchamia metodę ze state która jest oznaczona adnotacją action w której jest klasa akcji

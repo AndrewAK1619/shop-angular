@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
             label: "Email",
             placeholder: "Enter email",
             required: true,
-            maxLength: 255
+            maxLength: 255,
+            type: 'email'
           },
           validation: {
             messages: {
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
             label: "Password",
             placeholder: "Enter password",
             required: true,
-            maxLength: 255
+            maxLength: 255,
+            type: 'password'
           },
           validation: {
             messages: {
