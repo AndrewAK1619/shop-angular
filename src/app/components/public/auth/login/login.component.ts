@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { Store } from '@ngxs/store';
+import { LoginUserAction } from '../state/user.actions';
 
 @Component({
   selector: 'app-login',
@@ -60,11 +62,12 @@ export class LoginComponent implements OnInit {
     { template: '<br />' },
   ];
 
-  constructor() { }
+  constructor(public readonly store: Store) { }
 
   ngOnInit(): void {
   }
 
   submit() {
+    this.store.dispatch(new LoginUserAction(this.formGroup.value.email, this.formGroup.value.password));
   }
 }
