@@ -4,6 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Select, Store } from '@ngxs/store';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu',
@@ -22,9 +23,14 @@ export class MenuComponent {
   token$: Observable<string>
 
   constructor(private breakpointObserver: BreakpointObserver,
-    private readonly store: Store) { }
+    private readonly store: Store,
+    private readonly translateService: TranslateService) { }
 
   logout() {
     this.store.dispatch(new LogoutAction())
+  }
+
+  changeLanguage(lang: string) {
+    this.translateService.use(lang);
   }
 }

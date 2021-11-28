@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Store } from '@ngxs/store';
 import { LoginUserAction } from '../state/user.actions';
 
@@ -43,11 +44,13 @@ export class LoginComponent implements OnInit {
           key: "password",
           type: "input",
           templateOptions: {
-            label: "Password",
             placeholder: "Enter password",
             required: true,
             maxLength: 255,
             type: 'password'
+          },
+          expressionProperties: {
+            'templateOptions.label': this.translateService.stream('common.auth.password'),
           },
           validation: {
             messages: {
@@ -62,7 +65,8 @@ export class LoginComponent implements OnInit {
     { template: '<br />' },
   ];
 
-  constructor(public readonly store: Store) { }
+  constructor(public readonly store: Store,
+    private readonly translateService: TranslateService) { }
 
   ngOnInit(): void {
   }

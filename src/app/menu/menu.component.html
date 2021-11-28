@@ -2,8 +2,8 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
+      [opened]="(isHandset$ | async) === false">    
+      <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="auth/login" *ngIf="!(token$ | async)">Login</a>
       <a mat-list-item routerLink="auth/register" *ngIf="!(token$ | async)">Register</a>
@@ -19,10 +19,16 @@
             type="button"
             aria-label="Toggle sidenav"
             mat-icon-button
-            (click)="drawer.toggle()">
+            (click)="drawer.toggle()">              
             <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>shop</span>
+          </div>
+          <div>
+            <mat-select>
+              <mat-option (click)="changeLanguage('en')">EN</mat-option>
+              <mat-option (click)="changeLanguage('pl')">PL</mat-option>
+            </mat-select>
           </div>
           <div class="col-2" *ngIf="token$ | async">
             <button mat-raised-button color="primary" (click)="logout()" class="btn pull-right">Logout</button>

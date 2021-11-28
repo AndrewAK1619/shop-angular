@@ -24,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 import { ApiModule } from './api/api.module';
 import { environment } from 'src/environments/environment';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { environment } from 'src/environments/environment';
     NgxsRouterPluginModule.forRoot(),
     ApiModule.forRoot({
       rootUrl: environment.url
-    })
+    }),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

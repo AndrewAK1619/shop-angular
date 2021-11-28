@@ -15,6 +15,7 @@ import { FormlyMatDatepickerModule } from '@ngx-formly/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { MatCardModule } from '@angular/material/card';
+import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
     FormlyMatDatepickerModule,  // w formly datepicker
     MatNativeDateModule, // w formly datepicker
     NgxsModule.forFeature([UserState]),
+    TranslateModule
   ]
 })
 export class AuthModule { }

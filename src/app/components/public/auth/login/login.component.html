@@ -2,7 +2,9 @@
     <mat-card class="custom inside-card login-card">
         <form [formGroup]="formGroup" (ngSubmit)="submit()">
             <formly-form [fields]="formFields" [form]="formGroup"></formly-form>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Login</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">
+                {{ 'common.auth.login' | translate }}
+            </button>
         </form>
     </mat-card>
 </mat-card>
