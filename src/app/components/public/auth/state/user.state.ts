@@ -5,14 +5,17 @@ import { State, Action, StateContext } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserControllerService } from 'src/app/api/services';
 import { environment } from 'src/environments/environment';
-import { RegisterUserAction, LoginUserAction, LogoutAction, LoginFromLocaleStorageAction } from './user.actions';
+import { RegisterUserAction, LoginUserAction, LogoutAction, LoginFromLocaleStorageAction, GetCurrentUserAction } from './user.actions';
+import { UserDto } from 'src/app/api/models';
 
 export class UserStateModel {
-  public token: string; // pathState aktualizuje zmienną token
+  public token: string; // pathState aktualizuje zmienną UserStateModel
+  public currentUser: UserDto;  // pathState aktualizuje zmienną UserStateModel
 }
 
 const defaults = {
-  token: ''
+  token: '',
+  currentUser: {}
 };
 
 @State<UserStateModel>({
@@ -38,7 +41,8 @@ export class UserState {
     return this.httpClient.post<{ token: string }>(`${environment.url}/api/login`, { email, password }).pipe(
       tap(response => {
         patchState({ token: response.token });
-        localStorage.setItem('token', response.token)
+        localStorage.setItem('token', response.token);
+        dispatch(new GetCurrentUserAction())
       })
     )
   }
@@ -56,5 +60,14 @@ export class UserState {
     if (token) {
       patchState({ token }) // jeżeli nazwa zmiennej pokrywa się z nazwą przekazywnej zmiennej to nie potrzeba przypisywać
     }
+  }
+
+  @Action(GetCurrentUserAction)
+  getCurrentUser({ patchState }: StateContext<UserStateModel>) {
+    return this.userControllerService.getCurrentUserUsingGET().pipe(
+      tap(response =>
+        patchState({ currentUser: response })
+      )
+    );
   }
 }

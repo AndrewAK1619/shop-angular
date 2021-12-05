@@ -19,6 +19,7 @@ import { UserDto } from '../models/user-dto';
 class UserControllerService extends __BaseService {
   static readonly getPageUserUsingGETPath = '/api/users';
   static readonly saveUserUsingPOSTPath = '/api/users';
+  static readonly getCurrentUserUsingGETPath = '/api/users/current';
   static readonly getUserByIdUsingGETPath = '/api/users/{id}';
   static readonly updateUserUsingPUTPath = '/api/users/{id}';
   static readonly deleteUserByIdUsingDELETEPath = '/api/users/{id}';
@@ -113,6 +114,41 @@ class UserControllerService extends __BaseService {
    */
   saveUserUsingPOST(user: UserDto): __Observable<UserDto> {
     return this.saveUserUsingPOSTResponse(user).pipe(
+      __map(_r => _r.body as UserDto)
+    );
+  }
+
+  /**
+   * getCurrentUser
+   * @return OK
+   */
+  getCurrentUserUsingGETResponse(): __Observable<__StrictHttpResponse<UserDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/api/users/current`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<UserDto>;
+      })
+    );
+  }
+  /**
+   * getCurrentUser
+   * @return OK
+   */
+  getCurrentUserUsingGET(): __Observable<UserDto> {
+    return this.getCurrentUserUsingGETResponse().pipe(
       __map(_r => _r.body as UserDto)
     );
   }

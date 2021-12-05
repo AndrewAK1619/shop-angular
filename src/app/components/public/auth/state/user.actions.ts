@@ -19,3 +19,8 @@ export class LoginFromLocaleStorageAction {
   static readonly type = '[User] LoginFromLocaleStorageAction';
   constructor() {}
 }
+
+export class GetCurrentUserAction {
+  static readonly type = '[User] GetCurrentUserAction';
+  constructor() {}
+}
