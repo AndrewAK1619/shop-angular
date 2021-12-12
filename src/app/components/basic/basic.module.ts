@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './products/products.component';
+import { NgxsModule } from '@ngxs/store';
+import { ProductState } from './state/product.state';
 
 
 
@@ -9,7 +11,8 @@ import { ProductsComponent } from './products/products.component';
     ProductsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgxsModule.forFeature([ProductState]),
   ],
   exports: [
     ProductsComponent
