@@ -17,7 +17,7 @@ import { ProductDto } from '../models/product-dto';
   providedIn: 'root',
 })
 class ProductControllerService extends __BaseService {
-  static readonly getPageUsingGETPath = '/api/products';
+  static readonly getProductPageUsingGETPath = '/api/products';
   static readonly saveProductUsingPOSTPath = '/api/products';
   static readonly getProductByIdUsingGETPath = '/api/products/{id}';
   static readonly updateProductUsingPUTPath = '/api/products/{id}';
@@ -31,8 +31,8 @@ class ProductControllerService extends __BaseService {
   }
 
   /**
-   * getPage
-   * @param params The `ProductControllerService.GetPageUsingGETParams` containing the following parameters:
+   * getProductPage
+   * @param params The `ProductControllerService.GetProductPageUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -40,7 +40,7 @@ class ProductControllerService extends __BaseService {
    *
    * @return OK
    */
-  getPageUsingGETResponse(params: ProductControllerService.GetPageUsingGETParams): __Observable<__StrictHttpResponse<PageProductDto>> {
+  getProductPageUsingGETResponse(params: ProductControllerService.GetProductPageUsingGETParams): __Observable<__StrictHttpResponse<PageProductDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -64,8 +64,8 @@ class ProductControllerService extends __BaseService {
     );
   }
   /**
-   * getPage
-   * @param params The `ProductControllerService.GetPageUsingGETParams` containing the following parameters:
+   * getProductPage
+   * @param params The `ProductControllerService.GetProductPageUsingGETParams` containing the following parameters:
    *
    * - `size`: size
    *
@@ -73,8 +73,8 @@ class ProductControllerService extends __BaseService {
    *
    * @return OK
    */
-  getPageUsingGET(params: ProductControllerService.GetPageUsingGETParams): __Observable<PageProductDto> {
-    return this.getPageUsingGETResponse(params).pipe(
+  getProductPageUsingGET(params: ProductControllerService.GetProductPageUsingGETParams): __Observable<PageProductDto> {
+    return this.getProductPageUsingGETResponse(params).pipe(
       __map(_r => _r.body as PageProductDto)
     );
   }
@@ -251,9 +251,9 @@ class ProductControllerService extends __BaseService {
 module ProductControllerService {
 
   /**
-   * Parameters for getPageUsingGET
+   * Parameters for getProductPageUsingGET
    */
-  export interface GetPageUsingGETParams {
+  export interface GetProductPageUsingGETParams {
 
     /**
      * size
