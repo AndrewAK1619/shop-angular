@@ -1,9 +1,7 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">    
-      <mat-toolbar>Menu</mat-toolbar>
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="auth/login" *ngIf="!(token$ | async)">Login</a>
       <a mat-list-item routerLink="auth/register" *ngIf="!(token$ | async)">Register</a>
@@ -14,24 +12,23 @@
     <mat-toolbar color="primary">
       <div class="container">
         <div class="row">
-          <div class="col-10">
-            <button
-            type="button"
-            aria-label="Toggle sidenav"
-            mat-icon-button
-            (click)="drawer.toggle()">              
-            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          <div class="col-6">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
             </button>
             <span>shop</span>
           </div>
-          <div>
-            <mat-select>
-              <mat-option (click)="changeLanguage('en')">EN</mat-option>
-              <mat-option (click)="changeLanguage('pl')">PL</mat-option>
-            </mat-select>
+          <div class="col-2">
+            <mat-form-field class="language-select">
+              <mat-label>Language</mat-label>
+              <mat-select>
+                <mat-option (click)="changeLanguage('en')">EN</mat-option>
+                <mat-option (click)="changeLanguage('pl')">PL</mat-option>
+              </mat-select>
+            </mat-form-field>
           </div>
-          <div class="col-2" *ngIf="token$ | async">
-            <button mat-raised-button color="primary" (click)="logout()" class="btn pull-right">Logout</button>
+          <div *ngIf="token$ | async" class="col-2">
+            <button mat-raised-button color="primary" (click)="logout()">Logout</button>
           </div>
         </div>
       </div>
