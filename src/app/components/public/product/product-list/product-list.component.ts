@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'serialNumber', 'quantity', 'price', ];
+  displayedColumns: string[] = ['name', 'serialNumber', 'quantity', 'price'];
 
   constructor() { }
 

@@ -6,6 +6,7 @@
       <a mat-list-item routerLink="auth/login" *ngIf="!(token$ | async)">Login</a>
       <a mat-list-item routerLink="auth/register" *ngIf="!(token$ | async)">Register</a>
       <a mat-list-item routerLink="products/list">Products</a>
+      <a mat-list-item routerLink="admin/products/list" *ngIf="(token$ | async)">Products Admin</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
