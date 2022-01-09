@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthGuard } from './auth.guard';
 
 
 
@@ -14,7 +15,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
     RouterModule.forChild([
       {
         path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule)
+        loadChildren: () => import('./admin/admin.module').then(module => module.AdminModule),
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['ROLE_ADMIN']
+        }
       }
     ])
   ],

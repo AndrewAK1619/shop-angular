@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Navigate } from '@ngxs/router-plugin';
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { tap } from 'rxjs/operators';
 import { UserControllerService } from 'src/app/api/services';
 import { environment } from 'src/environments/environment';
@@ -27,6 +27,11 @@ export class UserState {
 
   constructor(public readonly userControllerService: UserControllerService,
     public readonly httpClient: HttpClient) {
+  }
+
+  @Selector() // dzięki niej możemy pobierać wartości z modelu state
+  static currentUser(userStateModel: UserStateModel) {
+    return userStateModel.currentUser;
   }
 
   @Action(RegisterUserAction)
@@ -55,10 +60,11 @@ export class UserState {
   }
 
   @Action(LoginFromLocaleStorageAction)
-  loginFromLocaleStorage({ patchState }: StateContext<UserStateModel>) {
+  loginFromLocaleStorage({ dispatch, patchState }: StateContext<UserStateModel>) {
     const token = localStorage.getItem('token');
     if (token) {
       patchState({ token }) // jeżeli nazwa zmiennej pokrywa się z nazwą przekazywnej zmiennej to nie potrzeba przypisywać
+      dispatch(new GetCurrentUserAction())
     }
   }
 
